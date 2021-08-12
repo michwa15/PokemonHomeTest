@@ -2,6 +2,7 @@ import React from "react";
 import ListItem from "../ListItem/ListItem";
 
 const FavoritesList = ({ items, onFavoriteClick, onPokemonItemClick }) => {
+  
   const renderListItems = () => {
     return items.map((item, index) => {
       return (

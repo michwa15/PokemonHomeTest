@@ -19,7 +19,7 @@ function NavBar({ onNavBarItemClick }) {
               event.preventDefault();
             }}
           >
-            Pokimons
+            Pokemons
           </button>
         </li>
         <li className="nav-item">

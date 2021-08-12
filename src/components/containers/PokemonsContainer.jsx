@@ -4,33 +4,61 @@ import NavBar from "../presentational/NavBar/NavBar";
 import axios from "axios";
 import FavoritesList from "../presentational/FavoritesList/FavoritesList";
 import PokemonDetails from "../presentational/PokemonDetails/PokemonDetails";
+import VolumeUpIcon from '@material-ui/icons/VolumeUp';
+import VolumeOffIcon from '@material-ui/icons/VolumeOff';
 
-const PokemonsContainer = () => {
-  // Fire only on init of application
+const PokemonsContainer = ({onSoundIconClick, isPlaying}) => {
+  
   const [items, setItems] = useState([]);
   const [favorites, setFavorites] = useState([]);
+  const [currList, setCurrList] = useState("pokemons");
+  const [currPokemon, setCurrPokemon] = useState(null);
 
   useEffect(() => {
-    axios.get("http://pokeapi.co/api/v2/pokemon/?limit=20").then((response) => {
-      setItems(response.data.results);
+    let elements = [];
+
+    axios.get("http://pokeapi.co/api/v2/pokemon/?limit=151").then((response) => {
+      const promisesArr = response.data.results.map((item) =>
+        axios.get(item.url)
+      );
+
+      //TODO:; callback hell ->. async/await
+      Promise.all(promisesArr).then((responses) => {
+        elements = responses.map((response) => response.data);
+        setItems(elements);
+      });
     });
-  }, []);
 
-  useEffect(() => {
     const arr = JSON.parse(localStorage.getItem("fav")) || [];
     setFavorites(arr);
   }, []);
+    
 
-  const [currList, setCurrList] = useState("pokemons");
-  const [currPokemon, setCurrPokemon] = useState(null);
-  const [areas, setAreas] = useState([]);
+  const onPokemonItemClick = (pokemonDetails) => {
+    
+    const evolutionUrl = "https://pokeapi.co/api/v2/pokemon-species/" + pokemonDetails.id + "/";
 
-  const findAreas = (url) => {
-    axios.get(url).then((response) => setAreas(response.data));
-  };
+    const pokemonInfoIndex = items.findIndex(item => item.name === pokemonDetails.name);
+    var pokemonInfo = items[pokemonInfoIndex];
 
-  const onPokemonItemClick = (item) => {
-    axios.get(item.url).then((response) => setCurrPokemon(response.data));
+    let URL1 = axios.get(pokemonDetails.location_area_encounters);
+    let URL2 = axios.get(evolutionUrl)
+
+    Promise.all([URL1, URL2]).then((responses) => {
+      
+      pokemonInfo.areas = responses[0].data;
+      pokemonInfo.evolvesFrom = responses[1].data;
+
+      axios.get(responses[1].data.evolution_chain.url).then(response => {
+        
+        pokemonInfo.evolutionChain = response.data.chain;
+        items[pokemonInfoIndex] = pokemonInfo;
+        
+        setItems([...items]);
+        setCurrPokemon({...pokemonInfo});
+      })
+    })
+
   };
 
   const onNavBarItemClick = (name) => {
@@ -64,16 +92,17 @@ const PokemonsContainer = () => {
       return newFav;
     });
   };
-
+  
   return (
     <div>
       <NavBar onNavBarItemClick={onNavBarItemClick} />
       <div className="grid">
+        <button className="sound-button" onClick={() => onSoundIconClick()}>{
+          isPlaying ? <VolumeUpIcon /> : <VolumeOffIcon /> 
+        }</button>
         {currPokemon !== null ? (
           <PokemonDetails
             currPokemon={currPokemon}
-            findAreas={findAreas}
-            areas={areas}
           />
         ) : currList === "pokemons" ? (
           <List

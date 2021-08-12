@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import Checkbox from "@material-ui/core/Checkbox";
 import Favorite from "@material-ui/icons/Favorite";
-import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
@@ -12,36 +10,26 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import VolumeUpIcon from '@material-ui/icons/VolumeUp';
+import VolumeUpIcon from "@material-ui/icons/VolumeUp";
+import useSound from "use-sound";
+import pikachuVoice from "../../../sounds/pikachu.mp3";
+import bulbasaurVoice from "../../../sounds/bulbasaur.mp3";
+import charmanderVoice from "../../../sounds/charmander.mp3";
 
 const ListItem = ({ item, onFavoriteClick, isActive, onPokemonItemClick }) => {
-  const [imgUrl, setImgUrl] = useState("");
-
-  useEffect(() => {
-    // TODO: REFACTOR GETTING THE POKEMON IMAGE OUT OF PRESENTIAIONAL COMPONENTS. (9LISTITEM IS PRESENTIIONAL).
-    axios.get(item.url).then((response) => {
-      setImgUrl(response.data.sprites.front_default);
-    });
-  }, []);
-
-  const classes = makeStyles({
-    root: {
-      maxWidth: 345,
-    },
-    media: {
-      height: 140,
-    },
-  });
+  
+  const [playPikachu] = useSound(pikachuVoice);
+  const [playBulbasaur] = useSound(bulbasaurVoice);
+  const [playCharmander] = useSound(charmanderVoice);
 
   return (
     <li className="pokemonCard">
-      <Card className={classes.root}>
-        <CardActionArea>
+      <Card className="card-root">
+        <CardActionArea style={{cursor:"default"}}>
           <CardMedia
+            className="card-media"
             component="img"
-            height="30%"
-            className={classes.media}
-            image={imgUrl}
+            image={item.sprites.front_default}
             title="Contemplative Reptile"
           />
           <CardContent>
@@ -67,14 +55,15 @@ const ListItem = ({ item, onFavoriteClick, isActive, onPokemonItemClick }) => {
               }
             />
           </Button>
-          <Button
-            size="large"
-            color="primary"
-            
-          >
-            <VolumeUpIcon />
+          <Button className="volume-button" size="large" color="primary">
+            <VolumeUpIcon onClick={() => {
+              if(item.name === "pikachu") playPikachu();
+              if(item.name === "bulbasaur") playBulbasaur();
+              if(item.name === "charmander") playCharmander();
+            }}/>
           </Button>
           <Button
+            className="learn-more"
             size="large"
             color="primary"
             onClick={() => onPokemonItemClick(item)}

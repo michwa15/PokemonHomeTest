@@ -1,16 +1,11 @@
 import React from "react";
 import ListItem from "../ListItem/ListItem";
 
-const List = ({
-  items,
-  favoritesList,
-  onFavoriteClick,
-  onPokemonItemClick,
-}) => {
+const List = ({ items, favoritesList, onFavoriteClick, onPokemonItemClick }) => {
+  
   const isInFavorites = (item) => {
     return favoritesList.some(
-      (favoriteItem) => favoriteItem.name === item.name
-    );
+      (favoriteItem) => favoriteItem.name === item.name);
   };
 
   const renderListItems = () => {

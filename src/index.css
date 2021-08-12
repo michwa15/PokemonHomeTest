@@ -1,14 +1,14 @@
-body{
-  background: #FDFAF6;
+body {
+  background: #fdfaf6;
   margin: 0;
 }
 
-.pokemon-details{
-  margin-left:20px;
+.pokemon-content {
+  margin-left: 20px;
+  text-align: left;
 }
 
 .nav {
-  
   margin: 0 0 10px 0;
   height: 60px;
   background-color: yellow;
@@ -24,10 +24,6 @@ body{
 .nav-item {
   margin-right: 100px;
   padding: auto;
-}
-
-button {
-  padding: 7px;
 }
 
 .nav button {
@@ -48,10 +44,11 @@ button {
 
 .header-img {
   height: 50px;
-  margin: 5px 40px 10px 10px;
+  margin: 5px 40px 10px 30px !important;
 }
 
 button {
+  padding: 7px;
   background-color: white;
   border: none;
   outline: none;
@@ -62,32 +59,57 @@ button {
   font-size: 20px;
 }
 
-.pokemon-card-header{
+.pokemon-card-header {
   text-align: center;
   margin-bottom: 40px;
 }
 
-.pokemon-card-header img{
+.pokemon-card-header img {
   height: 150px;
   width: 150px;
   margin-bottom: 0;
 }
 
-.pokemon-card-header h1{
+.pokemon-card-header h1 {
   margin-top: 0;
 }
 
-.pokemon-details{
-  text-align: left;
-}
-
-.pokemonCard{
+.pokemonCard {
   margin: 10px;
   width: 300px;
   display: inline-block;
 }
 
-.grid{
+.grid {
   text-align: center;
 }
 
+.card-root {
+  max-width: 345;
+}
+
+.card-media {
+  height: 140px;
+  object-fit: none;
+  margin: auto;
+  width: 50% !important;
+}
+
+ul {
+  padding-left: 0;
+}
+
+.volume-button {
+  position: absolute !important;
+  margin-left: 30px !important;
+}
+
+.learn-more {
+  margin-left: 80px !important;
+}
+
+.sound-button {
+  cursor: pointer;
+  position: absolute;
+  left: 96%;
+}
