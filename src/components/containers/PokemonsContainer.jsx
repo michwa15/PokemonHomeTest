@@ -95,9 +95,10 @@ const PokemonsContainer = ({onSoundIconClick, isPlaying}) => {
     <div>
       <NavBar onNavBarItemClick={onNavBarItemClick} />
       <div className="grid">
-        <button className="sound-button" onClick={() => onSoundIconClick()}>{
-          isPlaying ? <VolumeUpIcon /> : <VolumeOffIcon /> 
-        }</button>
+        <button className="sound-button" onClick={() => onSoundIconClick()}>
+          {isPlaying ? <VolumeUpIcon /> : <VolumeOffIcon /> }
+        </button>
+        
         {currPokemon !== null ? (
           <PokemonDetails
             currPokemon={currPokemon}

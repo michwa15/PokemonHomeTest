@@ -14,7 +14,13 @@ const PokemonInfo = ({ title, content, infoType }) => {
       <h2 className="list-info-title">{title}</h2>
       <ul className="list-info-details">
         {content.map((item, index) => {
-           return <li key={item[infoType].name} className="pokemon-attribute" style={{background: "linear-gradient(" + randomColor1+ "," + randomColor2 + ")"}}>{item[infoType].name}</li>
+           return <li 
+                    key={item[infoType].name} 
+                    className="pokemon-attribute" 
+                    style={{background: "linear-gradient(" + randomColor1+ "," + randomColor2 + ")"}}
+                  >
+                    {item[infoType].name}
+                  </li>
         })}
       </ul>
     </div>
