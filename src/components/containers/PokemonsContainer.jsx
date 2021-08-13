@@ -22,7 +22,6 @@ const PokemonsContainer = ({onSoundIconClick, isPlaying}) => {
         axios.get(item.url)
       );
 
-      //TODO:; callback hell ->. async/await
       Promise.all(promisesArr).then((responses) => {
         elements = responses.map((response) => response.data);
         setItems(elements);
@@ -62,7 +61,6 @@ const PokemonsContainer = ({onSoundIconClick, isPlaying}) => {
   };
 
   const onNavBarItemClick = (name) => {
-    //TODO : merge the 2 set commands
     setCurrList(name);
     setCurrPokemon(null);
   };

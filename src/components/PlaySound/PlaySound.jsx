@@ -3,6 +3,7 @@ import Sound from "react-sound";
 import PokemonTheme from "../../sounds/pokemonThemeSong.mp3"
 
 const PlaySound = ({handleSongLoading, handleSongPlaying, handleSongFinishedPlaying, isPlaying}) => {
+    
     return (
         <div>
             <Sound 
@@ -12,7 +13,7 @@ const PlaySound = ({handleSongLoading, handleSongPlaying, handleSongFinishedPlay
             onLoading={handleSongLoading}
             onPlaying={handleSongPlaying}
             onFinishedPlaying={handleSongFinishedPlaying}
-            volume="5"
+            volume={0.4}
             />
         </div>
 

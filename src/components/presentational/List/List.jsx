@@ -2,6 +2,7 @@ import React from "react";
 import ListItem from "../ListItem/ListItem";
 
 const List = ({ items, favoritesList, onFavoriteClick, onPokemonItemClick }) => {
+  window.scrollTo(0, 0);
   
   const isInFavorites = (item) => {
     return favoritesList.some(
@@ -23,7 +24,7 @@ const List = ({ items, favoritesList, onFavoriteClick, onPokemonItemClick }) => 
   };
 
   return (
-    <ul>{renderListItems()}</ul>
+    <ul className="cards-list">{renderListItems()}</ul>
   );
 };
 

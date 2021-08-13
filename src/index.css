@@ -12,6 +12,11 @@ body {
   margin: 0 0 10px 0;
   height: 60px;
   background-color: yellow;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
 
 .nav li {
@@ -82,6 +87,7 @@ button {
 
 .grid {
   text-align: center;
+  margin-top: 100px;
 }
 
 .card-root {
@@ -95,7 +101,7 @@ button {
   width: 50% !important;
 }
 
-ul {
+.cards-list {
   padding-left: 0;
 }
 
@@ -112,4 +118,40 @@ ul {
   cursor: pointer;
   position: absolute;
   left: 96%;
+}
+
+.evolution-item {
+  display: inline;
+  padding-right: 22px;
+}
+
+.pokemon-attribute {
+  font-family: "Flexo-Medium", arial, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  display: inline-block;
+  background: linear-gradient(gold, rgb(255, 94, 0));
+  color: white;
+  margin: 10px;
+  padding: 5px 8px;
+  border-radius: 5px;
+}
+
+.list-info-details {
+  width: 90%;
+}
+
+.list-info-title {
+  padding-left: 12px;
+}
+
+hr {
+  border-color: grey;
+  border-width: 5px;
+  border-style: dotted none none;
+  height: 0px;
+  width: 10%;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

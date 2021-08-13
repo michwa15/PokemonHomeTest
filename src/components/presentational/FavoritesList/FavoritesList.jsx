@@ -18,7 +18,7 @@ const FavoritesList = ({ items, onFavoriteClick, onPokemonItemClick }) => {
   };
 
   return (
-    <ul>{renderListItems()}</ul>
+    <ul className="cards-list">{renderListItems()}</ul>
   );
 };
 

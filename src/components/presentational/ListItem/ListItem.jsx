@@ -15,12 +15,14 @@ import useSound from "use-sound";
 import pikachuVoice from "../../../sounds/pikachu.mp3";
 import bulbasaurVoice from "../../../sounds/bulbasaur.mp3";
 import charmanderVoice from "../../../sounds/charmander.mp3";
+import squirtleVoice from "../../../sounds/squirtle.mp3";
 
 const ListItem = ({ item, onFavoriteClick, isActive, onPokemonItemClick }) => {
   
   const [playPikachu] = useSound(pikachuVoice);
   const [playBulbasaur] = useSound(bulbasaurVoice);
   const [playCharmander] = useSound(charmanderVoice);
+  const [playSquirtle] = useSound(squirtleVoice);
 
   return (
     <li className="pokemonCard">
@@ -60,6 +62,7 @@ const ListItem = ({ item, onFavoriteClick, isActive, onPokemonItemClick }) => {
               if(item.name === "pikachu") playPikachu();
               if(item.name === "bulbasaur") playBulbasaur();
               if(item.name === "charmander") playCharmander();
+              if(item.name === "squirtle") playSquirtle();
             }}/>
           </Button>
           <Button
