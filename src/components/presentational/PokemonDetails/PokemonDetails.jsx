@@ -1,5 +1,5 @@
 import React from "react";
-import PokemonInfo from "../../PokemonInfo/PokemonInfo";
+import PokemonInfo from "../PokemonInfo/PokemonInfo";
 
 const PokemonDetails = ({ currPokemon }) => {
   window.scrollTo(0, 0);
